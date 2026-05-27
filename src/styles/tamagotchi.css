@@ -1,0 +1,360 @@
+/* ===== DEVICE FRAME ===== */
+.tamagotchi-device {
+  width: 320px;
+  height: 540px;
+  background: linear-gradient(145deg, #FFE4B5, #FFD39B);
+  border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Chain hole at top */
+.chain-hole {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2d1b69;
+  border: 3px solid #b8a07a;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Brand label */
+.device-brand {
+  position: absolute;
+  top: 36px;
+  font-size: 7px;
+  color: #b8946a;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ===== LCD SCREEN ===== */
+.tamagotchi-screen {
+  width: 220px;
+  height: 200px;
+  background: #9BBC0F;
+  border: 4px solid #4a4a4a;
+  border-radius: 8px;
+  margin-top: 60px;
+  position: relative;
+  overflow: hidden;
+  image-rendering: pixelated;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tamagotchi-screen.sleeping {
+  background: #7a9a0a;
+  filter: brightness(0.7);
+}
+
+/* Screen bezel */
+.screen-bezel {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border: 3px solid #333;
+  border-radius: 12px;
+  pointer-events: none;
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.3),
+    0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+/* Screen inner shadow */
+.tamagotchi-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ===== BUTTONS ===== */
+.buttons-container {
+  display: flex;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.device-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #666;
+  background: linear-gradient(145deg, #e0e0e0, #b0b0b0);
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-family: 'Press Start 2P', monospace;
+  color: #444;
+  position: relative;
+}
+
+.device-btn:active {
+  transform: scale(0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.device-btn:hover {
+  background: linear-gradient(145deg, #eaeaea, #c0c0c0);
+}
+
+.btn-label {
+  position: absolute;
+  bottom: -18px;
+  font-size: 6px;
+  color: #b8946a;
+  white-space: nowrap;
+}
+
+/* ===== STATS BARS ===== */
+.stats-container {
+  width: 100%;
+  padding: 4px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 14px;
+}
+
+.stat-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.stat-label {
+  font-size: 5px;
+  color: #306230;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.stat-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: #7a9a0a;
+  border: 1px solid #306230;
+  position: relative;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: #306230;
+  transition: width 0.5s ease;
+}
+
+.stat-bar-fill.low {
+  animation: stat-blink 0.5s infinite;
+}
+
+@keyframes stat-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ===== ACTION MENU ===== */
+.action-menu {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  z-index: 20;
+}
+
+.menu-item {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.4;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.menu-item.active {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+.menu-item-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== PET AREA ===== */
+.pet-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.pet-name {
+  font-size: 6px;
+  color: #306230;
+  margin-bottom: 4px;
+}
+
+.pet-age {
+  font-size: 5px;
+  color: #306230;
+  margin-top: 4px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes idle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes eating {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-4px); }
+  50% { transform: translateY(0); }
+  75% { transform: translateY(-2px); }
+}
+
+@keyframes playing {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-8px); }
+  75% { transform: translateX(8px); }
+}
+
+@keyframes sleeping {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes sick-shake {
+  0%, 100% { transform: translateX(0); }
+  10% { transform: translateX(-3px); }
+  20% { transform: translateX(3px); }
+  30% { transform: translateX(-3px); }
+  40% { transform: translateX(3px); }
+  50% { transform: translateX(0); }
+}
+
+@keyframes hatch-shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+@keyframes death-float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+
+@keyframes zzz-float {
+  0% { transform: translateY(0) translateX(0); opacity: 1; }
+  100% { transform: translateY(-20px) translateX(10px); opacity: 0; }
+}
+
+.pet-idle {
+  animation: idle-bounce 2s ease-in-out infinite;
+}
+
+.pet-eating {
+  animation: eating 0.4s ease-in-out 3;
+}
+
+.pet-playing {
+  animation: playing 0.5s ease-in-out 3;
+}
+
+.pet-sleeping {
+  animation: sleeping 3s ease-in-out infinite;
+}
+
+.pet-sick {
+  animation: sick-shake 1s ease-in-out infinite;
+}
+
+.pet-hatching {
+  animation: hatch-shake 0.3s ease-in-out infinite;
+}
+
+.pet-death {
+  animation: death-float 2s ease-out forwards;
+}
+
+/* Zzz indicator */
+.zzz {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 8px;
+  color: #306230;
+}
+
+.zzz span {
+  display: inline-block;
+  animation: zzz-float 2s ease-out infinite;
+}
+
+.zzz span:nth-child(2) {
+  animation-delay: 0.5s;
+  font-size: 6px;
+}
+
+.zzz span:nth-child(3) {
+  animation-delay: 1s;
+  font-size: 10px;
+}
+
+/* ===== NOTIFICATION ===== */
+.notification {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 5px;
+  color: #306230;
+  text-align: center;
+  z-index: 20;
+  animation: notification-fade 2s ease-out forwards;
+}
+
+@keyframes notification-fade {
+  0% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { opacity: 0; }
+}
